@@ -5,8 +5,10 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 let carCollection = new Array();
-carCollection.push({name:"Audi", hp: 200});
-carCollection.push({name:"BMW", hp: 220});
+let carIdCounter = 1;
+//carCollection.push({name:"Audi", hp: 200});
+//carCollection.push({name:"BMW", hp: 220});
+
 console.log(carCollection);
 
 app.get("/car", (req, res) => {
@@ -14,7 +16,11 @@ app.get("/car", (req, res) => {
 });
 
 app.post("/car", (req, res) => {
-    carCollection.push(req.body);
+    carToAdd = req.body;
+    carToAdd.id=carIdCounter++;
+
+    carCollection.push(carToAdd);
+    
     res.send(JSON.stringify(carCollection));
 });
 
