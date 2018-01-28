@@ -26,8 +26,7 @@ app.get("/car/:id", (req, res) => {
 
     /* find a car with the specific id which has to be
     converted to Int to be able to match the find criteria */
-    singleCar = carCollection.find(x => x.id === parseInt(req.params.id));
-    console.log(singleCar);
+    let singleCar = carCollection.find(x => x.id === parseInt(req.params.id));
 
     // send a 404 error Msg. if no such car in the carCollection
     if (typeof singleCar === 'undefined') {
@@ -36,6 +35,23 @@ app.get("/car/:id", (req, res) => {
         res.send(JSON.stringify(singleCar));
     }
 });
+
+app.delete("/car/:id", (req, res) => {
+
+    let carToDeleteId = parseInt(req.params.id);
+
+    for (let i = 0; i < carCollection.length; i++) {
+        const aCar = carCollection[i];
+        
+        if (aCar.id === carToDeleteId) {
+            carCollection.splice(i, 1);
+            res.status(200).send('car deleted');
+        }
+
+    }
+    res.status(404).send('Not found');
+});
+
 
 app.listen(3000, (param) => {
     console.log("App started at port 3000!");
