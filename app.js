@@ -18,7 +18,7 @@ app.post("/car", (req, res) => {
     carToAdd.id=carIdCounter++;
     carCollection.push(carToAdd);
 
-    res.send(JSON.stringify(carCollection));
+    res.status(200).send('Car added.');
 });
 
 // GET a specific car in carCollection by the id
@@ -37,21 +37,29 @@ app.get("/car/:id", (req, res) => {
 });
 
 app.delete("/car/:id", (req, res) => {
-
     let carToDeleteId = parseInt(req.params.id);
 
-    for (let i = 0; i < carCollection.length; i++) {
-        const aCar = carCollection[i];
-        
-        if (aCar.id === carToDeleteId) {
+    for (let i = 0; i < carCollection.length; i++) {     
+        if (carCollection[i].id === carToDeleteId) {
             carCollection.splice(i, 1);
-            res.status(200).send('car deleted');
+            res.status(200).send('Car deleted.');
         }
-
     }
     res.status(404).send('Not found');
 });
 
+app.put("/car/:id", (req, res) => {
+    let carToEditId = parseInt(req.params.id);
+  
+    for (let i = 0; i < carCollection.length; i++) {
+        if (carCollection[i].id === carToEditId) {
+            carCollection[i].name = req.body.name;
+            carCollection[i].hp = req.body.hp;
+            res.status(200).send('Car edited.');
+        }
+    }
+    res.status(404).send('Not found');
+});
 
 app.listen(3000, (param) => {
     console.log("App started at port 3000!");
