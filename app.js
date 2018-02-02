@@ -1,8 +1,12 @@
+require('dotenv').config()
+
 let express = require('express');
 let app = express();
 
 app.use(express.json());
 app.use(express.urlencoded());
+
+var port = process.env.PORT || 8000;
 
 let carCollection = new Array();
 let carIdCounter = 1;
@@ -62,5 +66,5 @@ app.put("/car/:id", (req, res) => {
 });
 
 app.listen(3000, (param) => {
-    console.log("App started at port 3000!");
+    console.log("App started at port: "+port);
 })
