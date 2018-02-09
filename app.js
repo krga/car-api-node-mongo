@@ -8,10 +8,10 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded());
 
-var port = process.env.PORT || 8000;
+let port = process.env.PORT || 8000;
 
 app.use(require('./routes_api'));
 
-app.listen(3000, (param) => {
+app.listen(port, (param) => {
     console.log("App started at port: "+port);
 })
