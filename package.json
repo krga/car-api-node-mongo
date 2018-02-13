@@ -1,17 +1,17 @@
 {
-  "name": "api-test",
+  "name": "car-api-node",
   "version": "1.0.0",
-  "description": "A simple Node.js API",
+  "description": "A simple Node.js API for cars",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "5.0.0",
-    "express": "4.16.2"
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2"
   }
 }
