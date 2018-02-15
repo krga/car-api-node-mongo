@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-let carCollection = new Array();
+let carCollection = [];
 let carIdCounter = 1;
 
 // GET all cars in carCollection
