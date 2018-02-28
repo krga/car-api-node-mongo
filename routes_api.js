@@ -4,6 +4,13 @@ var router = express.Router();
 let carCollection = [];
 let carIdCounter = 1;
 
+/*  GET all cars in carCollection using standardized JSON transport structure
+    according to https://jsonapi.org/about/ */ 
+router.get("/api/cars", (req, res) => {
+    let dataJSON  = {data: carCollection};
+    res.send(JSON.stringify(dataJSON));
+});
+
 // GET all cars in carCollection
 router.get("/car", (req, res) => {
     res.send(JSON.stringify(carCollection));
