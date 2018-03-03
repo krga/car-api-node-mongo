@@ -7,8 +7,23 @@ let carIdCounter = 1;
 /*  GET all cars in carCollection using standardized JSON transport structure
     according to https://jsonapi.org/about/ */ 
 router.get("/api/cars", (req, res) => {
-    let dataJSON  = {data: carCollection};
-    res.send(JSON.stringify(dataJSON));
+
+    if (req.query.name !== undefined) {
+        console.log("Searching for: "+req.query.name);
+
+        let searchResult = carCollection.filter(function(carEntry) {
+            console.log("-- Looking into: "+carEntry.name);
+            return carEntry.name.includes(req.query.name);
+        });
+
+        let dataJSON  = {data: searchResult};
+        res.send(JSON.stringify(dataJSON));
+    } else {
+        let dataJSON  = {data: carCollection};
+        res.send(JSON.stringify(dataJSON));
+    }
+
+    
 });
 
 // GET all cars in carCollection
