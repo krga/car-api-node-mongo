@@ -5,15 +5,14 @@ let carCollection = [];
 let carIdCounter = 1;
 
 /*  GET all cars in carCollection using standardized JSON transport structure
-    according to https://jsonapi.org/about/ */ 
+    according to https://jsonapi.org/about/. The data can also be searched 
+    by using the parameter name */ 
 router.get("/api/cars", (req, res) => {
 
     if (req.query.name !== undefined) {
-        console.log("Searching for: "+req.query.name);
 
         let searchResult = carCollection.filter(function(carEntry) {
-            console.log("-- Looking into: "+carEntry.name);
-            return carEntry.name.includes(req.query.name);
+            return carEntry.attributes.name.includes(req.query.name);
         });
 
         let dataJSON  = {data: searchResult};
@@ -22,8 +21,18 @@ router.get("/api/cars", (req, res) => {
         let dataJSON  = {data: carCollection};
         res.send(JSON.stringify(dataJSON));
     }
+});
 
-    
+/* insert a new car into the carCollection honouring the attribute definiton 
+     https://jsonapi.org/ */
+router.post("/api/cars", (req, res) => {
+    let carToAdd = {};
+    carToAdd.id=carIdCounter++;
+    carToAdd.type='car';
+    carToAdd.attributes={ name: req.body.name, hp: req.body.hp};
+    carCollection.push(carToAdd);
+
+    res.status(200).send('Car added.');
 });
 
 // GET all cars in carCollection
