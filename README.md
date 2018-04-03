@@ -1,3 +1,3 @@
-# Node.js API for cars
+# Node.js API for cars using MongoDB
 
-A simple Node.js API for cars
+A Node.js API for cars using MongoDB for persistance

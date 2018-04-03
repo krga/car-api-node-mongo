@@ -1,17 +1,18 @@
 {
-  "name": "car-api-node",
+  "name": "car-api-node-mongo",
   "version": "1.0.0",
-  "description": "A Node.js API for cars",
+  "description": "A Node.js API for cars using MongoDB for persistance",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Kristian Gavran",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^5.0.0",
-    "express": "^4.16.2"
+    "express": "^4.16.2",
+    "mongoose": "^5.4.8"
   }
 }
